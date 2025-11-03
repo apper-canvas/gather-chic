@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
@@ -29,17 +29,17 @@ const Signup = () => {
     }
   };
 
-  const validateForm = () => {
+const validateForm = () => {
     const newErrors = {};
     
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     }
     
-    if (!formData.email) {
+    if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
     }
     
     if (!formData.password) {
@@ -51,7 +51,7 @@ const Signup = () => {
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = "Please confirm your password";
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "Passwords don't match";
     }
     
     setErrors(newErrors);
@@ -68,15 +68,9 @@ const Signup = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
+      // TODO: Implement actual signup API call
+      // For now, simulate success
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock user creation and auto-login
-      await login({
-        email: formData.email,
-        name: formData.name,
-        id: "user-123"
-      });
       
       toast.success("Account created successfully! Welcome to Gather!");
       navigate("/dashboard");
@@ -117,7 +111,7 @@ const Signup = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+<form onSubmit={handleSubmit} className="space-y-6">
               <Input
                 label="Full Name"
                 type="text"
@@ -126,16 +120,18 @@ const Signup = () => {
                 onChange={handleChange}
                 error={errors.name}
                 placeholder="Enter your full name"
+                required
               />
 
               <Input
-                label="Email Address"
+                label="Email"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 error={errors.email}
                 placeholder="Enter your email"
+                required
               />
 
               <Input
@@ -145,7 +141,8 @@ const Signup = () => {
                 value={formData.password}
                 onChange={handleChange}
                 error={errors.password}
-                placeholder="Create a password (min. 6 characters)"
+                placeholder="Create a password"
+                required
               />
 
               <Input
@@ -156,23 +153,18 @@ const Signup = () => {
                 onChange={handleChange}
                 error={errors.confirmPassword}
                 placeholder="Confirm your password"
+                required
               />
 
               <Button
                 type="submit"
-                className="w-full"
+                variant="primary"
                 size="lg"
+                className="w-full"
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <motion.div
-                      className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
-                    Creating account...
-                  </div>
+                  "Creating Account..."
                 ) : (
                   "Create Account"
                 )}

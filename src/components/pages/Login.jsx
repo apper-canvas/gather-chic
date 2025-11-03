@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
@@ -53,18 +53,14 @@ const Login = () => {
       return;
     }
 
-    setIsLoading(true);
+setIsLoading(true);
     
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Mock authentication
-      await login({
-        email: formData.email,
-        name: formData.email.split("@")[0],
-        id: "user-123"
-      });
+      // Mock authentication - call the login function from useAuth
+      await login(formData.email, formData.password);
       
       toast.success("Welcome back!");
       navigate("/dashboard");
@@ -105,7 +101,7 @@ const Login = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+<form onSubmit={handleSubmit} className="space-y-6">
               <Input
                 label="Email Address"
                 type="email"
@@ -114,6 +110,7 @@ const Login = () => {
                 onChange={handleChange}
                 error={errors.email}
                 placeholder="Enter your email"
+                required
               />
 
               <Input
@@ -124,60 +121,35 @@ const Login = () => {
                 onChange={handleChange}
                 error={errors.password}
                 placeholder="Enter your password"
+                required
               />
 
               <Button
                 type="submit"
+                variant="primary"
                 className="w-full"
-                size="lg"
                 disabled={isLoading}
+                loading={isLoading}
               >
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <motion.div
-                      className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
-                    Signing in...
-                  </div>
-                ) : (
-                  "Sign In"
-                )}
+                {isLoading ? "Signing in..." : "Sign in"}
               </Button>
             </form>
 
-            <div className="mt-8 text-center">
-              <p className="text-gray-600">
-                Don't have an account?{" "}
+            <div className="text-center mt-6">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{' '}
                 <Link 
                   to="/signup" 
-                  className="text-primary hover:text-primary/80 font-medium transition-colors"
+                  className="font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   Sign up
                 </Link>
               </p>
             </div>
           </Card>
-
-          {/* Demo credentials */}
-          <motion.div
-            className="mt-6 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.3 }}
-          >
-            <p className="text-sm text-primary font-medium mb-2 text-center">
-              Demo Credentials
-            </p>
-            <p className="text-xs text-center text-gray-600">
-              Use any email and password (min. 6 characters) to sign in
-            </p>
-          </motion.div>
         </motion.div>
       </div>
     </div>
   );
 };
-
-export default Login;
+};
