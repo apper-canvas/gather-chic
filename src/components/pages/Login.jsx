@@ -152,4 +152,3 @@ setIsLoading(true);
     </div>
   );
 };
-};
