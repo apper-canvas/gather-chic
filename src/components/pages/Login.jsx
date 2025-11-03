@@ -149,6 +149,8 @@ setIsLoading(true);
           </Card>
         </motion.div>
       </div>
-    </div>
+</div>
   );
 };
+
+export default Login;
