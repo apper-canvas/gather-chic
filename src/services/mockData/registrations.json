@@ -1,0 +1,86 @@
+[
+  {
+    "Id": 1,
+    "eventId": 1,
+    "userId": "current-user",
+    "status": "confirmed",
+    "registeredAt": "2024-12-10T14:30:00Z"
+  },
+  {
+    "Id": 2,
+    "eventId": 3,
+    "userId": "current-user", 
+    "status": "confirmed",
+    "registeredAt": "2024-12-11T09:15:00Z"
+  },
+  {
+    "Id": 3,
+    "eventId": 5,
+    "userId": "current-user",
+    "status": "confirmed", 
+    "registeredAt": "2024-12-12T16:45:00Z"
+  },
+  {
+    "Id": 4,
+    "eventId": 8,
+    "userId": "current-user",
+    "status": "confirmed",
+    "registeredAt": "2024-12-13T10:20:00Z"
+  },
+  {
+    "Id": 5,
+    "eventId": 2,
+    "userId": "user-456",
+    "status": "confirmed",
+    "registeredAt": "2024-12-09T13:00:00Z"
+  },
+  {
+    "Id": 6,
+    "eventId": 4,
+    "userId": "user-789",
+    "status": "confirmed",
+    "registeredAt": "2024-12-08T11:30:00Z"
+  },
+  {
+    "Id": 7,
+    "eventId": 6,
+    "userId": "user-456",
+    "status": "confirmed",
+    "registeredAt": "2024-12-07T15:45:00Z"
+  },
+  {
+    "Id": 8,
+    "eventId": 7,
+    "userId": "user-789",
+    "status": "confirmed",
+    "registeredAt": "2024-12-14T12:15:00Z"
+  },
+  {
+    "Id": 9,
+    "eventId": 9,
+    "userId": "current-user",
+    "status": "confirmed",
+    "registeredAt": "2024-12-15T08:30:00Z"
+  },
+  {
+    "Id": 10,
+    "eventId": 10,
+    "userId": "user-456",
+    "status": "confirmed",
+    "registeredAt": "2024-12-13T17:00:00Z"
+  },
+  {
+    "Id": 11,
+    "eventId": 11,
+    "userId": "user-789",
+    "status": "confirmed",
+    "registeredAt": "2024-12-12T14:20:00Z"
+  },
+  {
+    "Id": 12,
+    "eventId": 12,
+    "userId": "current-user",
+    "status": "confirmed",
+    "registeredAt": "2024-12-16T10:45:00Z"
+  }
+]
